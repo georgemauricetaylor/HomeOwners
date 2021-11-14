@@ -22,6 +22,35 @@ describe('parseHomeOwnerService', function() {
             assert.equal(results.length, homeownersJSON.length+3);
         });
     });
+    describe('checkForInitial', function() {
+        it('should be able find and correct where first_name has an initial', function() {
+            const homeowners = [{
+                title: "Mr",
+                first_name:"T",
+                initial:"",
+                last_name: "Staff"
+            },
+                {
+                    title: "Mr",
+                    first_name:"M.",
+                    initial:"",
+                    last_name: "Don"
+                }]
+            const expectedResult = [{
+                title: "Mr",
+                first_name:"",
+                initial:"T",
+                last_name: "Staff"
+            },{
+                title: "Mr",
+                first_name:"",
+                initial:"M.",
+                last_name: "Don"
+            }];
+            const result = parseHomeOwnersService.checkForInitial(homeowners);
+            assert.deepEqual(result,expectedResult);
+        });
+    })
     describe('parseSinglePerson', function() {
         it('should be able to split HomeOwners field with initial', function() {
             const homeowner = 'Dr Robert J Doe';

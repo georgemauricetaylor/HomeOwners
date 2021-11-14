@@ -13,8 +13,21 @@ const parseNames = (homeOwners) => {
             results.push(person);
         }
     });
-    return results;
+    return checkForInitial(results);
 }
+
+const checkForInitial = (results) => {
+    results.forEach(homeowner => {
+        if(homeowner.initial){
+            return;
+        }
+        if(homeowner.first_name.replace(".","").length === 1){
+            homeowner.initial = homeowner.first_name;
+            homeowner.first_name = "";
+        }
+    })
+    return results;
+};
 
 const parseSinglePerson = (name) => {
     const homeowner = name.split(" ");
@@ -111,3 +124,4 @@ const Person = function () {
 module.exports.parseSinglePerson = parseSinglePerson;
 module.exports.parseTwoPeople = parseTwoPeople;
 module.exports.parseNames = parseNames;
+module.exports.checkForInitial = checkForInitial;
