@@ -1,4 +1,4 @@
-const CONJUNCTIONS = ['and', '&']
+const CONJUNCTIONS = ['and', '&','AND']
 const TITLES = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs','Prof','Mister']
 
 const parseNames = (homeOwners) => {

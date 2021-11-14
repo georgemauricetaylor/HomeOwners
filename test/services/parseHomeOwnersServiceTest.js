@@ -123,6 +123,23 @@ describe('parseHomeOwnerService', function() {
             const names = parseHomeOwnersService.parseTwoPeople(homeowner);
             assert.deepEqual(names,expectedResult);
         });
+        it('should be able to split a name with two full names and case-insensitive', function() {
+            const homeowner = 'Mr Tom Staff AND Mr John Doe'.split(" ");
+            const expectedResult = [{
+                title: "Mr",
+                first_name:"Tom",
+                initial:"",
+                last_name: "Staff"
+            },{
+                title: "Mr",
+                first_name:"John",
+                initial:"",
+                last_name: "Doe"
+            }];
+
+            const names = parseHomeOwnersService.parseTwoPeople(homeowner);
+            assert.deepEqual(names,expectedResult);
+        });
         it('should be able to split a name with two full names with initial ', function() {
             const homeowner = 'Mr Tom J Staff and Mr John P Doe'.split(" ");
             const expectedResult = [{
