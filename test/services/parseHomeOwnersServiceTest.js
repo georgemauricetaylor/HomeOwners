@@ -3,6 +3,25 @@ const parseHomeOwnersService = require('../../libs/services/parseHomeOwnersServi
 
 describe('parseHomeOwnerService', function() {
 
+    const homeownersJSON = [
+        { homeowner: 'Mr John Smith' },
+        { homeowner: 'Mrs Jane Smith'},
+        { homeowner: 'Mister John Doe' },
+        { homeowner: 'Mr Bob Lawblaw'},
+        { homeowner: 'Mr and Mrs Smith' },
+        { homeowner: 'Mr Craig Charles' },
+        { homeowner: 'Mr M Mackie' },
+        { homeowner: 'Mrs Jane McMaster' },
+        { homeowner: 'Mr Tom Staff and Mr John Doe' },
+        { homeowner: 'Dr P Gunn' },
+        { homeowner: 'Dr & Mrs Joe Bloggs' },
+    ];
+    describe('parseNames', function() {
+        it('should be able to split HomeOwners field with more than one person', function() {
+            const results = parseHomeOwnersService.parseNames(homeownersJSON);
+            assert.equal(results.length, homeownersJSON.length+3);
+        });
+    });
     describe('parseSinglePerson', function() {
         it('should be able to split HomeOwners field with initial', function() {
             const homeowner = 'Dr Robert J Doe';

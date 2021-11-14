@@ -1,6 +1,21 @@
 const CONJUNCTIONS = ['and', '&']
 const TITLES = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs','Prof','Mister']
 
+const parseNames = (homeOwners) => {
+    let results = []
+    homeOwners.forEach(row => {
+        if (CONJUNCTIONS.some(el => row.homeowner.includes(el))) {
+            const splitOut = row.homeowner.trim().split(" ");
+            const names = parseTwoPeople(splitOut);
+            results.push(names[0], names[1]);
+        } else {
+            const person = parseSinglePerson(row.homeowner);
+            results.push(person);
+        }
+    });
+    return results;
+}
+
 const parseSinglePerson = (name) => {
     const homeowner = name.split(" ");
     const person = new Person();
@@ -95,3 +110,4 @@ const Person = function () {
 
 module.exports.parseSinglePerson = parseSinglePerson;
 module.exports.parseTwoPeople = parseTwoPeople;
+module.exports.parseNames = parseNames;
