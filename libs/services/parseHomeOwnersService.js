@@ -1,3 +1,4 @@
+const CONJUNCTIONS = ['and', '&']
 const TITLES = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs','Prof','Mister']
 
 const parseSinglePerson = (name) => {
@@ -19,6 +20,70 @@ const parseSinglePerson = (name) => {
     }
     return person;
 }
+
+const parseTwoPeople = (homeowner) => {
+    const first_person = new Person();
+    const second_person = new Person();
+    if (TITLES.includes(homeowner[0])) {
+        first_person.title = homeowner.shift();
+    }
+    if (hasTitleThenTitle(homeowner)) {
+        homeowner.shift();
+        second_person.title = homeowner.shift();
+        if (homeowner.length === 1) {
+            addLastName(homeowner, first_person, second_person)
+        } else if (homeowner.length === 2) {
+            second_person.first_name = homeowner.shift();
+            addLastName(homeowner, first_person, second_person)
+        } else {
+            second_person.first_name = homeowner.shift()
+            second_person.initial = homeowner.shift()
+            addLastName(homeowner, first_person, second_person)
+        }
+    } else {
+        if (hasInitial (homeowner)) {
+            first_person.first_name = homeowner.shift();
+            first_person.initial = homeowner.shift();
+            first_person.last_name = homeowner.shift();
+            homeowner.shift();
+            second_person.title = homeowner.shift();
+        } else {
+            first_person.first_name = homeowner.shift();
+            first_person.last_name = homeowner.shift();
+            homeowner.shift();
+            second_person.title = homeowner.shift();
+        }
+        if (hasInitial (homeowner)) {
+            second_person.first_name = homeowner.shift();
+            second_person.initial = homeowner.shift();
+            second_person.last_name = homeowner.shift();
+            homeowner.shift();
+        } else {
+            second_person.first_name = homeowner.shift();
+            second_person.last_name = homeowner.shift();
+            homeowner.shift();
+        }
+    }
+    return [first_person, second_person];
+}
+
+const hasInitial  = (homeowner) => {
+    if (homeowner.length < 3) {
+        return false;
+    }
+    return !(TITLES.includes(homeowner[2]) || CONJUNCTIONS.includes(homeowner[2]));
+
+}
+
+const hasTitleThenTitle = (homeowner) => {
+    return CONJUNCTIONS.includes(homeowner[0]);
+}
+
+const addLastName = (homeowner, first_person, second_person) => {
+    first_person.last_name = homeowner[0];
+    second_person.last_name = homeowner.shift()
+}
+
 const Person = function () {
     return {
         title: "",
@@ -29,3 +94,4 @@ const Person = function () {
 };
 
 module.exports.parseSinglePerson = parseSinglePerson;
+module.exports.parseTwoPeople = parseTwoPeople;
