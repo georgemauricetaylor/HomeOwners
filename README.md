@@ -42,3 +42,44 @@ add checks to flag any results that seem odd. very short or long character count
 
 ### OOP
 As the person json grows it can be refactored into an object to make handling and readability easier
+
+
+## Example input/output
+
+###Input
+homeowner
+Mr John Smith
+Mrs Jane Smith
+Mister John Doe
+Mr Bob Lawblaw
+Mr and Mrs Smith
+Mr Craig Charles
+Mr M Mackie
+Mrs Jane McMaster
+Mr Tom Staff and Mr John Doe
+Dr P Gunn
+Dr & Mrs Joe Bloggs
+Ms Claire Robbo
+Prof Alex Brogan
+Mrs Faye Hughes-Eastwood
+Mr F. Fredrickson
+
+###Output
+[{"title":"Mr","first_name":"John","initial":"","last_name":"Smith"},
+{"title":"Mrs","first_name":"Jane","initial":"","last_name":"Smith"},
+{"title":"Mister","first_name":"John","initial":"","last_name":"Doe"},
+{"title":"Mr","first_name":"Bob","initial":"","last_name":"Lawblaw"},
+{"title":"Mr","first_name":"","initial":"","last_name":"Smith"},
+{"title":"Mrs","first_name":"","initial":"","last_name":"Smith"},
+{"title":"Mr","first_name":"Craig","initial":"","last_name":"Charles"},
+{"title":"Mr","first_name":"","initial":"M","last_name":"Mackie"},
+{"title":"Mrs","first_name":"Jane","initial":"","last_name":"McMaster"},
+{"title":"Mr","first_name":"Tom","initial":"","last_name":"Staff"},
+{"title":"Mr","first_name":"John","initial":"","last_name":"Doe"},
+{"title":"Dr","first_name":"","initial":"P","last_name":"Gunn"},
+{"title":"Dr","first_name":"","initial":"","last_name":"Bloggs"},
+{"title":"Mrs","first_name":"Joe","initial":"","last_name":"Bloggs"},
+{"title":"Ms","first_name":"Claire","initial":"","last_name":"Robbo"},
+{"title":"Prof","first_name":"Alex","initial":"","last_name":"Brogan"},
+{"title":"Mrs","first_name":"Faye","initial":"","last_name":"Hughes-Eastwood"},
+{"title":"Mr","first_name":"","initial":"F.","last_name":"Fredrickson"}]
