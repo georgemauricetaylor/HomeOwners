@@ -33,7 +33,7 @@ To run the tests run
 
 ### IF csv file gets too large
 The code could be implemented in a Lambda to take the stress of parsing the data off this system.
-Exactly how depends on how the csv is obtained. 
+Exactly how depends on how the csv is obtained.
 * You could read the cvs and then start an aws SQS queue which triggers a lambda to parse the csv line by line then input them into a db (either in aws or via an API endpoint).
 * OR have the csv be uploaded to s4 and then processed by a Lamdba and then input them into a db (either in aws or via an API endpoint).
 
@@ -41,7 +41,7 @@ Exactly how depends on how the csv is obtained.
 Extend the code so Mr & Mr & Ms Smith would work.
 
 ### More Titles
-Enter a more extensive list of titles to be parsed. 
+Enter a more extensive list of titles to be parsed.
 
 ### Data Quality checks
 add checks to flag any results that seem odd. very short or long character counts, symbols in names, etc
@@ -52,7 +52,7 @@ As the person json grows it can be refactored into an object to make handling an
 
 ## Example input/output
 
-###Input
+### Input
 ```
 homeowner
 Mr John Smith
@@ -72,7 +72,7 @@ Mrs Faye Hughes-Eastwood
 Mr F. Fredrickson
 ```
 
-###Output
+### Output
 ```
 [{"title":"Mr","first_name":"John","initial":"","last_name":"Smith"},
 {"title":"Mrs","first_name":"Jane","initial":"","last_name":"Smith"},
