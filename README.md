@@ -13,15 +13,21 @@ Splitting people out when there are two people in the name( Mr John Doe and Miss
 
 - There will only ever be two people in the name at this point
 - File size will be small enough to be effectively read in/sent via post
-- Titles used: ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs','Prof','Mister'] 
-- Conjunctions used: ['and', '&','AND']
+- Titles used:``` ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs','Prof','Mister'] ```
+- Conjunctions used:``` ['and', '&','AND']```
 
 
-## SETUP
+## How to run
 
 1. Download the files
-2. Run npm install
-3. Send csv to http://localhost:3000/fileUpload via POST (in Postman or equivalent ) OR go to http://localhost:3000/fileUpload/example to load in example csv
+2. Run ```npm install```
+3. Run ```npm start```
+4. Send csv to http://localhost:3000/fileUpload via POST (in Postman or equivalent ) OR go to http://localhost:3000/fileUpload/example to load in example csv
+
+### Tests
+To run the tests run
+``` mocha test/**/*Test.js --reporter spec ```
+
 
 ## Areas of Improvement
 
@@ -47,6 +53,7 @@ As the person json grows it can be refactored into an object to make handling an
 ## Example input/output
 
 ###Input
+```
 homeowner
 Mr John Smith
 Mrs Jane Smith
@@ -63,8 +70,10 @@ Ms Claire Robbo
 Prof Alex Brogan
 Mrs Faye Hughes-Eastwood
 Mr F. Fredrickson
+```
 
 ###Output
+```
 [{"title":"Mr","first_name":"John","initial":"","last_name":"Smith"},
 {"title":"Mrs","first_name":"Jane","initial":"","last_name":"Smith"},
 {"title":"Mister","first_name":"John","initial":"","last_name":"Doe"},
@@ -83,3 +92,4 @@ Mr F. Fredrickson
 {"title":"Prof","first_name":"Alex","initial":"","last_name":"Brogan"},
 {"title":"Mrs","first_name":"Faye","initial":"","last_name":"Hughes-Eastwood"},
 {"title":"Mr","first_name":"","initial":"F.","last_name":"Fredrickson"}]
+```
