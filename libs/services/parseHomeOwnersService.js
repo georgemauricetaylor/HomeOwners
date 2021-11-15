@@ -1,5 +1,5 @@
-const CONJUNCTIONS = ['and', '&','AND']
-const TITLES = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs','Prof','Mister']
+const CONJUNCTIONS = ['and', '&', 'AND'];
+const TITLES = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Drs', 'Prof', 'Mister'];
 
 const parseNames = (homeOwners) => {
     let results = []
@@ -18,10 +18,10 @@ const parseNames = (homeOwners) => {
 
 const checkForInitial = (results) => {
     results.forEach(homeowner => {
-        if(homeowner.initial){
+        if (homeowner.initial) {
             return;
         }
-        if(homeowner.first_name.replace(".","").length === 1){
+        if (homeowner.first_name.replace(".", "").length === 1) {
             homeowner.initial = homeowner.first_name;
             homeowner.first_name = "";
         }
@@ -69,7 +69,7 @@ const parseTwoPeople = (homeowner) => {
             addLastName(homeowner, first_person, second_person)
         }
     } else {
-        if (hasInitial (homeowner)) {
+        if (hasThreePartName(homeowner)) {
             first_person.first_name = homeowner.shift();
             first_person.initial = homeowner.shift();
             first_person.last_name = homeowner.shift();
@@ -81,7 +81,7 @@ const parseTwoPeople = (homeowner) => {
             homeowner.shift();
             second_person.title = homeowner.shift();
         }
-        if (hasInitial (homeowner)) {
+        if (hasThreePartName(homeowner)) {
             second_person.first_name = homeowner.shift();
             second_person.initial = homeowner.shift();
             second_person.last_name = homeowner.shift();
@@ -95,12 +95,11 @@ const parseTwoPeople = (homeowner) => {
     return [first_person, second_person];
 }
 
-const hasInitial  = (homeowner) => {
+const hasThreePartName = (homeowner) => {
     if (homeowner.length < 3) {
         return false;
     }
     return !(TITLES.includes(homeowner[2]) || CONJUNCTIONS.includes(homeowner[2]));
-
 }
 
 const hasTitleThenTitle = (homeowner) => {
